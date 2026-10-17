@@ -2,6 +2,11 @@ export type SiteConfig = {
   lfsExtensions: string[];
   siteName: string;
   siteDescription: string;
+  pageDescriptions: {
+    archives: string;
+    dictionary: string;
+    dictionaryExampleEntry: string;
+  };
   logoSrc: string;
   basePath: string;
   assetPrefix?: string;
@@ -14,6 +19,8 @@ export type SiteConfig = {
   };
   discordInviteUrl?: string;
   repositoryUrl?: string;
+  // Namespace for iframe embed API messages; parent pages must use the same value.
+  embedNamespace: string;
 };
 
 const normalizeBasePath = (value: string) => {
@@ -35,6 +42,11 @@ const siteUrl = `${siteOrigin.replace(/\/+$/, "")}${basePath || ""}`;
 export const siteConfig: SiteConfig = {
   siteName: "Wither Archive",
   siteDescription: "An archive of Wither technologies in Minecraft.",
+  pageDescriptions: {
+    archives: "Explore the archives for wither tech designs submitted by the community.",
+    dictionary: "A comprehensive dictionary of wither tech terms and concepts.",
+    dictionaryExampleEntry: "This is an example dictionary entry used for demonstration purposes.",
+  },
   logoSrc: `${basePath}/logo.png`,
   basePath,
   assetPrefix,
@@ -48,4 +60,5 @@ export const siteConfig: SiteConfig = {
   lfsExtensions: ["mp4", "bin", "zip"],
   repositoryUrl: "https://github.com/DuskScorpio/wither-archive",
   discordInviteUrl: "https://discord.gg/wd594eEtfm",
+  embedNamespace: "wither-archive",
 };
